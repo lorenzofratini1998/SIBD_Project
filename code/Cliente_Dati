@@ -1,0 +1,13 @@
+INSERT INTO Cliente(CodFiscale, Nome, Email, IVA) VALUES
+('03929100612', 'Tony Wild', 'info@tonywild.it', '03929100612'),
+('01926470442', 'Toma SRL', 'info@tomasrl.it', '01926470442'),
+('03626501203', 'Sokool', 'info@sokool.it', '03626501203'),
+('03136690231', 'La Bottega di Grazia', 'info@labottegadigrazia.it', '03136690231'),
+('02002280135', 'Maraldo Calzature', 'info@maraldocalzature.it', '02002280135'),
+('939272982', 'Shuboo', 'info@shuboo.com', '939272982'),
+('745350344', 'Sentiko', 'info@sentiko.com', '745350344'),
+('910018704', 'Top Staka Shoes LTD', 'info@stakashoes.com', '910018704'),
+('641860230', 'Butterfly Twists', 'info@butterfly.com', '641860230'),
+('857910111', 'BeesWift LTD', 'info@beeswift.com', '857910111');
+
+

@@ -1,0 +1,22 @@
+INSERT INTO Cliente(CodFiscale, Nome, Email, IVA) VALUES
+('IT03929100612', 'Tony Wild', 'info@tonywild.it', 'IT03929100612'),
+('IT01926470442', 'Toma SRL', 'info@tomasrl.it', 'IT01926470442'),
+('IT03626501203', 'Sokool', 'info@sokool.it', 'IT03626501203'),
+('IT03136690231', 'La Bottega di Grazia', 'info@labottegadigrazia.it', 'IT03136690231'),
+('IT02002280135', 'Maraldo Calzature', 'info@maraldocalzature.it', 'IT02002280135'),
+('GB939272982', 'Shuboo', 'info@shuboo.com', 'GB939272982'),
+('GB745350344', 'Sentiko', 'info@sentiko.com', 'GB745350344'),
+('GB910018704', 'Top Staka Shoes LTD', 'info@stakashoes.com', 'GB910018704'),
+('GB641860230', 'Butterfly Twists', 'info@butterfly.com', 'GB641860230'),
+('GB857910111', 'BeesWift LTD', 'info@beeswift.com', 'GB857910111'),
+('DE022248504','Trostel Sportschuhe GMBH','info@trostel-sportschuhe.com', 'DE022248504'),
+('DE020360404','Schuh Germann GMBH','info@schuh-germann.com','DE020360404'),
+('DE285620748','Escada Textilvertrieb GMBH','info@fr-escada.com','DE285620748'),
+('DE813258099','2 GO SHOE Company GMBH','info@2go-shoes.com','DE813258099'),
+('DE024448604','Auro Haus- Und Heimtextilien GMBH','info@auro-textil.com', 'DE024448604'),
+('02028220420','Yahting','info@.yahting.com', '02028220420'),
+('07825128597','Skorohod','info@fdo-skorohod.com ', '7825128597'),
+('90031420665','Tapkov.Net','info@tapkov.com', '90031420665'),
+('90031428933','Obuv-Prom','info@obuv-prom.com', '90031428933'),
+('02408380646','Profit Centr','info@profit-c.com', '02408380646');
+

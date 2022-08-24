@@ -1,0 +1,138 @@
+CREATE TABLE RubrIndirizzi(
+Via varchar(20),
+NCiv varchar(5),
+Citta varchar(15),
+CAP varchar(6),
+Nazione varchar(10) NOT NULL,
+Tipologia varchar(12) NOT NULL,
+check (Tipologia='Spedizione' or Tipologia='Fatturazione'),
+Cliente varchar(11) references Cliente(CodFiscale),
+primary key (Via, NCiv, Citta)
+) engine=InnoDB;
+
+CREATE TABLE Cliente(
+CodFiscale varchar(11),
+Nome varchar(20) NOT NULL,
+Email varchar(30),
+IVA varchar (11) NOT NULL,
+primary key(CodFiscale),
+unique (IVA)
+) engine=InnoDB;
+
+CREATE TABLE Telefono (
+Codice int AUTO_INCREMENT,
+Prefisso varchar(4) NOT NULL,
+Numero varchar(11) NOT NULL,
+Tipologia varchar(9) NOT NULL check (Tipologia='Cellulare' or Tipologia='Fisso'),
+Cliente varchar(13) references Cliente(CodFiscale),
+primary key (Codice)
+) engine=InnoDB;
+
+CREATE TABLE Ordine (
+CodOrdine char(4),
+Pagamento varchar(20) NOT NULL,
+check(Pagamento='RiBa' or Pagamento='Bonifico Bancario' or Pagamento='Rimessa Diretta 10gg' or Pagamento='Rimessa Diretta 60gg')
+DataOrd date NOT NULL,
+Cliente varchar(11) references Cliente(CodFiscale),
+primary key(CodOrdine)
+) engine=InnoDB;
+
+CREATE TABLE Spedizione (
+CodSped int AUTO_INCREMENT,
+Ordine char(3) references Ordine(CodOrdine) on update cascade on delete cascade,
+Corriere char(2) references Corriere(CodCorr),
+DataSped date NOT NULL,
+DataConsegna date,
+Destinazione varchar(10) NOT NULL,
+primary key (CodSped)
+) engine=InnoDB;
+
+CREATE TABLE Trasportatore(
+CodCorr int AUTO_INCREMENT,
+Nome varchar(15) NOT NULL,
+Zona varchar(15) NOT NULL,
+primary key(CodCorr)
+) engine=InnoDB;
+
+CREATE TABLE Articolo (
+CodArt varchar(5),
+Genere varchar(5) NOT NULL,
+check(Genere='Uomo' or Genere='Donna'),
+Modello varchar(15) NOT NULL,
+Prezzo decimal(5,2) NOT NULL,
+check(Prezzo>0),
+Suola char(2) references Suola(CodSuola) on update cascade on delete set null,
+Materiale char(3) references Materiale(CodMat) on update cascade on delete set null,
+CodListino char(4),
+primary key (CodArt)
+) engine=InnoDB;
+
+CREATE TABLE Suola (
+CodSuola char(2),
+Nome varchar(15)  NOT NULL,
+Forma varchar(4) NOT NULL,
+primary key(CodSuola)
+) engine=InnoDB;
+
+CREATE TABLE Materiale (
+CodMat char (2),
+Nome varchar(15) NOT NULL,
+Colore varchar(15) NOT NULL,
+Descrizione varchar(40) NOT NULL,
+primary key(CodMat)
+) engine=InnoDB;
+
+CREATE TABLE Reso (
+CodReso char(2),
+CodArt char (3),
+Ordine char(4) references Ordine(CodOrdine) on update cascade on delete cascade,
+Quantita numeric(2) not null,
+check( Quantita > 0),
+Motiv varchar(20) not null,
+Esito varchar(12) not null,
+check(Esito = 'Sostituzione' or  Esito='Accredito'),
+primary key(CodReso,CodArt)
+) engine=InnoDB;
+
+CREATE TABLE Fatturazione(
+CodFatt int AUTO_INCREMENT,
+Ordine varchar(4) references Ordine(CodOrdine),
+TotMerce decimal(6,2) not null,
+check(Totmerce > 0),
+Sconto decimal(4,2) default 00.00,
+check(Sconto >= 0),
+primary key(CodFatt)
+) engine=InnoDB;
+
+CREATE TABLE Pagamento(
+CodPag int AUTO_INCREMENT,
+Fattura int references Fattura(CodFatt),
+Importo decimal(6,2) not null,
+check( Importo > 0),
+DataPag date not null,
+primary key (CodPag)
+) engine=InnoDB;
+
+CREATE TABLE Accredito(
+CodAccr int AUTO_INCREMENT,
+Reso char(2) references Reso(CodReso),
+Importo decimal(6,2) not null,
+check(Importo > 0),
+DataAccr date not null,
+primary key (CodAccr)
+) engine=InnoDB;
+
+CREATE TABLE Elencazione(
+CodOrdine char(4) references Ordine(CordOrdine),
+CodArt varchar(5) references Articolo(CodArt),
+Misura decimal(3,1) NOT NULL,
+check(Misura >= 37 and Misura <= 47 and ((Misura*10)%5) = 0),
+Quantita numeric(2) not null,
+check(Quantita > 0),
+Totale decimal(6,2) not null,
+check(Totale > 0),
+primary key(CodOrdine,CodArt)
+) engine=InnoDB;
+
+
+
